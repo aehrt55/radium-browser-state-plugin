@@ -1,8 +1,33 @@
 {
   "name": "radium-browser-state-plugin",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "1.0.1",
+  "main": "lib/index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib/"
+  ],
+  "scripts": {
+    "build": "babel src --out-dir lib",
+    "release": "npm run build && npm publish"
+  },
   "repository": "git@github.com:aehrt55/radium-browser-state-plugin.git",
+  "keywords": [
+    "radium",
+    "radium-plugin",
+    "plugin",
+    "react",
+    "browser",
+    "state",
+    "ssr"
+  ],
   "author": "Xin Li <aehrt55@aehrt55.net>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.24.0",
+    "babel-core": "^6.24.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-es2015": "^6.24.0"
+  }
 }
