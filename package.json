@@ -1,0 +1,8 @@
+{
+  "name": "radium-browser-state-plugin",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:aehrt55/radium-browser-state-plugin.git",
+  "author": "Xin Li <aehrt55@aehrt55.net>",
+  "license": "MIT"
+}
