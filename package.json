@@ -1,5 +1,5 @@
 {
-  "name": "radium-browser-state-plugin",
+  "name": "@sususite/radium-browser-state-plugin",
   "version": "1.0.3",
   "main": "lib/index.js",
   "files": [
