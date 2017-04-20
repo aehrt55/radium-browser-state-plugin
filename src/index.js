@@ -5,6 +5,8 @@ function isBrowserState(key) {
   case ':visited':
   case ':focus':
   case ':disabled':
+  case ':after':
+  case ':before':
     return true;
   default:
     return false;
@@ -20,17 +22,17 @@ export default function browserStatePlugin({
   props,
   style,
 }) {
-  let className = props.className;
+  let { className } = props;
   const newStyle = Object.entries(style).reduce((newStyleInProgress, [key, value]) => {
     if (isBrowserState(key)) {
       const ruleCSS = cssRuleSetToString('', appendImportantToEachValue(value), config.userAgent);
-      const hoverClassName = `susu-rad-${hash(ruleCSS)}`;
-      const css = `.${hoverClassName}${key}${ruleCSS}`;
+      const pseudoSelectorClassName = `susu-pseudo-${hash(ruleCSS)}`;
+      const css = `.${pseudoSelectorClassName}${key}${ruleCSS}`;
       addCSS(css);
       if (!className) {
-        className = hoverClassName;
+        className = pseudoSelectorClassName;
       } else {
-        className += ` ${hoverClassName}`;
+        className += ` ${pseudoSelectorClassName}`;
       }
     } else {
       newStyleInProgress[key] = value;
