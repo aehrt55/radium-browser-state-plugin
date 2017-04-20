@@ -1,19 +1,24 @@
-function isBrowserState(key) {
+function isPseudoSelector(key) {
   switch (key) {
-  case ':hover':
-  case ':active':
-  case ':visited':
-  case ':focus':
-  case ':disabled':
-  case ':after':
-  case ':before':
+  case 'hover':
+  case 'active':
+  case 'visited':
+  case 'focus':
+  case 'disabled':
+  case 'after':
+  case 'before':
     return true;
   default:
     return false;
   }
 }
 
-export default function browserStatePlugin({
+function isPseudoSelectors(key) {
+  return ((key[0] === ':') && key
+  .split(':').splice(1).reduce((result, _key) => (result && isPseudoSelector(_key)), true));
+}
+
+export default function pseudoSelectorPlugin({
   addCSS,
   appendImportantToEachValue,
   config,
@@ -24,7 +29,7 @@ export default function browserStatePlugin({
 }) {
   let { className } = props;
   const newStyle = Object.entries(style).reduce((newStyleInProgress, [key, value]) => {
-    if (isBrowserState(key)) {
+    if (isPseudoSelectors(key)) {
       const ruleCSS = cssRuleSetToString('', appendImportantToEachValue(value), config.userAgent);
       const pseudoSelectorClassName = `susu-pseudo-${hash(ruleCSS)}`;
       const css = `.${pseudoSelectorClassName}${key}${ruleCSS}`;
