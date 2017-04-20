@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "build": "babel src --out-dir lib",
+    "prepublish": "npm run build",
     "release": "npm run build && npm publish"
   },
   "repository": "git@github.com:aehrt55/radium-browser-state-plugin.git",
